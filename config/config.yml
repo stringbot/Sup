@@ -1,0 +1,8 @@
+services:
+  finance:
+    web1va: /customers.xml?name=22%20Squared
+    web2va: /customers.xml?name=22%20Squared
+    web3va: /customers.xml?name=22%20Squared
+  stomp:
+    db1va: /admin.php
+
