@@ -12,12 +12,23 @@ class Sup
     YAML.load(File.open(CONFIG))
   end
 
-  def poll
-    @config[:servers].each do |name, url|
-      uri = URI.parse(url)
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        http.get(uri.path)
-      end
+  def servers
+    @servers ||= @config[:servers]
+  end
+
+  def poll_all
+    servers.each do |name, url|
+      poll_server(name, url)
     end
+  end
+
+  def poll_server(name, address)
+    uri = URI.parse(address)
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      update_server_state(name, http.get(uri.path))
+    end
+  end
+
+  def update_server_state(name, response)
   end
 end
