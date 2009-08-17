@@ -1,9 +1,4 @@
-require 'test/unit'
-require 'rubygems'
-require 'shoulda'
-require 'mocha'
-require 'sup'
-
+require 'test_helper'
 
 class SupTest < Test::Unit::TestCase
   context "a new Sup instance" do
