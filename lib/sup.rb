@@ -1,7 +1,7 @@
 require 'uri'
 require 'net/http'
 
-CONFIG = File.join('..', 'config', 'config.yml')
+CONFIG = File.join(File.dirname(__FILE__), '..', 'config', 'config.yml')
 
 class Sup
   def initialize()
