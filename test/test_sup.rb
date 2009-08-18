@@ -24,5 +24,11 @@ class SupTest < Test::Unit::TestCase
     before_should "attempt to reach the server at the specified url" do
       Net::HTTP.expects(:start).yields(mock(:get))
     end
+
+    before_should "update the results with the http response" do
+      fake_response = mock
+      Net::HTTP.expects(:start).yields(mock(:get => fake_response))
+      Sup.any_instance.expects(:update_server_state).with(anything, fake_response)
+    end
   end
 end

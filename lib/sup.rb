@@ -6,6 +6,7 @@ CONFIG = File.join(File.dirname(__FILE__), '..', 'config', 'config.yml')
 class Sup
   def initialize()
     @config = read_config
+    @states = {}
   end
 
   def read_config
@@ -30,5 +31,6 @@ class Sup
   end
 
   def update_server_state(name, response)
+    @states[name] = response
   end
 end

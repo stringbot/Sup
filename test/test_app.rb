@@ -9,10 +9,13 @@ class AppTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  # context "a get to index" do
-  #   should "be ok" do
-  #     get "/"
-  #     assert last_response.ok?
-  #   end
-  # end
+  context "a get to index" do
+    setup do
+      get "/"
+    end
+
+    before_should "use a Sup instance" do
+      Sup.expects(:new).returns(mock(:poll_all))
+    end
+  end
 end

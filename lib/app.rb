@@ -4,16 +4,18 @@ require 'net/http'
 require 'uri'
 
 get "/" do
-  status_hash = is_finance_running?("web1va", "web2va", "web3va", "dev02")
-  output = style_tag
-  output << "<div id='container'>"
-  output << "<h1>Is Finan<span>&#162;</span>e App Running?</h1>"
-  status_hash.each do |host,value|
-    status = value ? 'up' : 'down'
-    output << "<div class='#{status}'>Finance is #{status} on <span class='host'>#{host}</span>.</div>"
-  end
-  output << "</div>"
-  output.join
+  @sup = Sup.new.poll_all
+
+  # status_hash = is_finance_running?("web1va", "web2va", "web3va", "dev02")
+  # output = style_tag
+  # output << "<div id='container'>"
+  # output << "<h1>Is Finan<span>&#162;</span>e App Running?</h1>"
+  # status_hash.each do |host,value|
+  #   status = value ? 'up' : 'down'
+  #   output << "<div class='#{status}'>Finance is #{status} on <span class='host'>#{host}</span>.</div>"
+  # end
+  # output << "</div>"
+  # output.join
 end
 
 helpers do
