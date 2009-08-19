@@ -30,5 +30,9 @@ class SupTest < Test::Unit::TestCase
       Net::HTTP.expects(:start).yields(mock(:get => fake_response))
       Sup.any_instance.expects(:update_server_state).with(anything, fake_response)
     end
+
+    before_should "not raise errors when host is unreachable" do
+      Net::HTTP.expects(:start).raises(SocketError, "host no reachy")
+    end
   end
 end

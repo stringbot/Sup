@@ -2,22 +2,19 @@ require 'rubygems'
 require 'sinatra'
 require 'net/http'
 require 'uri'
-require 'erb'
+require 'haml'
 require 'sup'
 
+set :views, File.dirname(__FILE__) + '/../views'
+
 get "/" do
-  @states = Sup.new.poll_all
-  @butts = "CHOLO"
-  erb :index
+  @states = Sup.new.poll_all.states
+  haml :index
 end
 
 helpers do
-  def render(states)
-
-  end
-
   def render_state(name,status)
     state = status.kind_of?(Net::HTTPSuccess) ? 'up' : 'down'
-    "<div class='#{state}'>#{name} is #{state}</div>"
+    "#{name} is #{state}"
   end
 end

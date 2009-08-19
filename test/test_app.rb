@@ -17,5 +17,6 @@ class AppTest < Test::Unit::TestCase
     before_should "use a Sup instance" do
       Sup.expects(:new).returns(mock(:poll_all))
     end
+
   end
 end

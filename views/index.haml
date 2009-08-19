@@ -1,0 +1,7 @@
+%html
+  %head
+    %title Who Up In This
+  %body
+    #servers
+      -@states.each do |name, status|
+        .foo #{render_state(name, status)}

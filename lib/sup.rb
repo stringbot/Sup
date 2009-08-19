@@ -23,13 +23,18 @@ class Sup
     servers.each do |name, url|
       poll_server(name, url)
     end
+    self
   end
 
   def poll_server(name, address)
     uri = URI.parse(address)
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      path = uri.path.empty? ? '/' : uri.path
-      update_server_state(name, http.get(path))
+    begin
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        path = uri.path.empty? ? '/' : uri.path
+        update_server_state(name, http.get(path))
+      end
+    rescue SocketError
+      update_server_state(name, :unreachable)
     end
   end
 
