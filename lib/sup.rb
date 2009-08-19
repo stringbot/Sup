@@ -4,6 +4,8 @@ require 'net/http'
 CONFIG = File.join(File.dirname(__FILE__), '..', 'config', 'config.yml')
 
 class Sup
+  attr_reader :states
+
   def initialize()
     @config = read_config
     @states = {}
@@ -14,7 +16,7 @@ class Sup
   end
 
   def servers
-    @servers ||= @config[:servers]
+    @servers ||= @config['servers']
   end
 
   def poll_all
@@ -26,7 +28,8 @@ class Sup
   def poll_server(name, address)
     uri = URI.parse(address)
     Net::HTTP.start(uri.host, uri.port) do |http|
-      update_server_state(name, http.get(uri.path))
+      path = uri.path.empty? ? '/' : uri.path
+      update_server_state(name, http.get(path))
     end
   end
 

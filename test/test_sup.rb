@@ -13,8 +13,8 @@ class SupTest < Test::Unit::TestCase
 
   context "polling with Sup" do
     setup do
-      fake_config = {:servers =>
-        {:test1 => 'http://fake.server/index.html'}
+      fake_config = {'servers' =>
+        {'test1' => 'http://fake.server/index.html'}
       }
       Sup.any_instance.expects(:read_config).returns(fake_config)
       @sup = Sup.new

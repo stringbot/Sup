@@ -2,42 +2,22 @@ require 'rubygems'
 require 'sinatra'
 require 'net/http'
 require 'uri'
+require 'erb'
+require 'sup'
 
 get "/" do
-  @sup = Sup.new.poll_all
-
-  # status_hash = is_finance_running?("web1va", "web2va", "web3va", "dev02")
-  # output = style_tag
-  # output << "<div id='container'>"
-  # output << "<h1>Is Finan<span>&#162;</span>e App Running?</h1>"
-  # status_hash.each do |host,value|
-  #   status = value ? 'up' : 'down'
-  #   output << "<div class='#{status}'>Finance is #{status} on <span class='host'>#{host}</span>.</div>"
-  # end
-  # output << "</div>"
-  # output.join
+  @states = Sup.new.poll_all
+  @butts = "CHOLO"
+  erb :index
 end
 
 helpers do
-  def is_finance_running?(*servers)
-    status_hash = {}
-    servers.each do |host|
-      Net::HTTP.start("#{host}", 80) do |http|
-        response = http.head('/customers.js?name=22%20Squared')
-        status_hash[host] = response.kind_of?(Net::HTTPSuccess)
-      end
-    end
-    status_hash
+  def render(states)
+
   end
 
-  def style_tag
-    ["<style>
-      body { font-family: \"Lucida Grande\", sans-serif; width: 640px; margin: 2em auto; background-color: #eeefff; }
-       h1 { margin-top: 0; }
-       #container {  text-align: center; padding: 2em; -moz-border-radius: 5px; border: 1px solid #666; background-color: white; }
-       .host { text-transform: uppercase; font-weight: bold; }
-      .up { color: green; }
-      .down { color: red; }
-      </style>"]
+  def render_state(name,status)
+    state = status.kind_of?(Net::HTTPSuccess) ? 'up' : 'down'
+    "<div class='#{state}'>#{name} is #{state}</div>"
   end
 end
