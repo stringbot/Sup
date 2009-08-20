@@ -4,3 +4,10 @@ registry to see if they are up or not. There's no notification or automatic
 polling. It's pretty pointless unless you stick it in a web browser that 
 automatically reloads and is in plain sight. Sort of like our CI box.
 
+Requirements:
+* Sinatra
+* Haml
+* Patience
+
+Credits: 
+Mostly written by stringbot, and the stylesheet was lovingly detailed by jpfinley.
