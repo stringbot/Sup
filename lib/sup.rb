@@ -32,7 +32,6 @@ class Sup
       timeout(5) do
         print "#{Time.now}: checking #{name} at #{address} ... "
         Net::HTTP.start(uri.host, uri.port) do |http|
-          http.read_timeout = 10
           path = uri.path.empty? ? '/' : uri.path
           update_server_state(name, address, http.get(path))
           puts "ok"
