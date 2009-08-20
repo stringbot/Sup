@@ -4,5 +4,5 @@
     %link{:href => "sup.css", :rel => "stylesheet"}
   %body
     #servers
-      -@states.each do |name, status|
-        .state{:class => "#{css_for status}"} #{render_state(name, status)}
+      -@states.each do |name, status_hash|
+        .state{:class => "#{css_for status}"} #{render_state(name, status_hash[:url], status_hash[:response])}
