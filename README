@@ -1,0 +1,6 @@
+Sup is a disgustingly cutesy name for a pretty bare-bones monitoring app. And by
+"Monitoring" I mean when you load the app's page, it checks all the sites in its
+registry to see if they are up or not. There's no notification or automatic 
+polling. It's pretty pointless unless you stick it in a web browser that 
+automatically reloads and is in plain sight. Sort of like our CI box.
+
