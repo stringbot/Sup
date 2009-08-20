@@ -1,4 +1,4 @@
 servers:
   stringbot: "http://tmi.stringbot.com"
   googles: "http://www.google.com"
-  finance: "http://web1va/customers.xml?name=22%20Squared"
+  yahoo_fantasy_baseball: "http://baseball.fantasysports.yahoo.com/"
