@@ -31,14 +31,14 @@ class Sup
     begin
       Net::HTTP.start(uri.host, uri.port) do |http|
         path = uri.path.empty? ? '/' : uri.path
-        update_server_state(name, http.get(path))
+        update_server_state(name, address, http.get(path))
       end
     rescue SocketError
-      update_server_state(name, :unreachable)
+      update_server_state(name, address, :unreachable)
     end
   end
 
-  def update_server_state(name, response)
-    @states[name] = response
+  def update_server_state(name, address, response)
+    @states[name] = {:url => address, :response => response }
   end
 end

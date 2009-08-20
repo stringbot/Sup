@@ -1,7 +1,8 @@
 %html
   %head
     %title Who Up In This
+    %link{:href => "sup.css", :rel => "stylesheet"}
   %body
     #servers
       -@states.each do |name, status|
-        .foo #{render_state(name, status)}
+        .state{:class => "#{css_for status}"} #{render_state(name, status)}

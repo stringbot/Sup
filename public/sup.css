@@ -1,0 +1,11 @@
+body { font-family: \"Lucida Grande\", sans-serif; width: 640px; margin: 2em auto; background-color: #eeefff; }
+
+h1 { margin-top: 0; }
+
+#servers {  text-align: center; padding: 2em; -moz-border-radius: 5px; border: 1px solid #666; background-color: white; }
+
+.host { text-transform: uppercase; font-weight: bold; }
+
+.up { color: green; }
+
+.down { color: red; }
